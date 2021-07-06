@@ -2,7 +2,7 @@
 
 ### React Store
 
-## <a href="https://react-store.netlify.app">DEMO</a>
+## <a href="https://react-store-cart.netlify.app">DEMO</a>
 
 ## Quick start
 
