@@ -1,15 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import Button from "@material-ui/core/Button";
 
 import { CartItemType } from "../../pages/home";
 import { Wrapper } from "./styles";
 
-type Props = {
+type ItemProps = {
   item: CartItemType;
   handleAddToCart: (clickedItem: CartItemType) => void;
 };
 
-const Item: React.FC<Props> = ({ item, handleAddToCart }: Props) => (
+const Item: FC<ItemProps> = ({ item, handleAddToCart }: ItemProps) => (
   <Wrapper>
     <img src={item.image} alt={item.name} />
     <div>

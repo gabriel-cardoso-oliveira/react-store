@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -21,18 +21,20 @@ export type CartItemType = {
   amount: number;
 };
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const [products, setProducts] = useState<CartItemType[]>();
   const [err, setErr] = useState(false);
 
   const getTotalItems = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount, 0);
+    items.reduce(
+      (previousValue: number, item) => previousValue + item.amount,
+      0
+    );
 
   const handleAddToCart = (clickedItem: CartItemType) => {
     setCartItems((prev) => {
-      // 1. Is the item already added in the cart?
       const isItemInCart = prev.find((item) => item.id === clickedItem.id);
 
       if (isItemInCart) {
@@ -42,19 +44,21 @@ const Home: React.FC = () => {
             : item
         );
       }
-      // First time the item is added
+
       return [...prev, { ...clickedItem, amount: 1 }];
     });
   };
 
   const handleRemoveFromCart = (id: number) => {
     setCartItems((prev) =>
-      prev.reduce((ack, item) => {
+      prev.reduce((previousValue, item) => {
         if (item.id === id) {
-          if (item.amount === 1) return ack;
-          return [...ack, { ...item, amount: item.amount - 1 }];
+          if (item.amount === 1) return previousValue;
+
+          return [...previousValue, { ...item, amount: item.amount - 1 }];
         }
-        return [...ack, item];
+
+        return [...previousValue, item];
       }, [] as CartItemType[])
     );
   };

@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   }
 
   button:hover {
-    background-color: #fff;
+    background-color: #ccc;
     color: #000;
   }
 
@@ -24,6 +24,17 @@ export const Wrapper = styled.div`
     max-height: 250px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
+
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+  }
+
+  img:hover {
+    border-radius: 10px;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
 
   div {

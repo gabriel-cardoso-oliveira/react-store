@@ -1,26 +1,29 @@
-import React from "react";
+import React, { FC } from "react";
 import CartItem from "../CartItem";
 import { Wrapper } from "./styles";
 import { CartItemType } from "../../pages/home";
 
-type Props = {
+type CartProps = {
   cartItems: CartItemType[];
   addToCart: (clickedItem: CartItemType) => void;
   removeFromCart: (id: number) => void;
 };
 
-const Cart: React.FC<Props> = ({
+const Cart: FC<CartProps> = ({
   cartItems,
   addToCart,
   removeFromCart,
-}: Props) => {
+}: CartProps) => {
   const calculateTotal = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+    items.reduce(
+      (previousValue: number, item) => previousValue + item.amount * item.price,
+      0
+    );
 
   return (
     <Wrapper>
       <h2>React Store</h2>
-      {cartItems.length === 0 ? <p>No items in cart.</p> : null}
+      {cartItems.length === 0 && <p>No items in cart.</p>}
       {cartItems.map((item) => (
         <CartItem
           key={item.id}
